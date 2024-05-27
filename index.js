@@ -34,25 +34,14 @@ search.addEventListener('click', () =>{
             const wind = document.querySelector('.weather-details .wind span');
 
             switch (json.weather[0].main){
-                case 'Clear':
-                    image.src = 'assets/not-found.png'
-                    break;
-                    
+
                 case 'Rain':
                     image.src = 'assets/not-found.png'
                     break;
-
-                case 'Snow':
+                case 'Mist':
                     image.src = 'assets/not-found.png'
                     break;
 
-                case 'Clouds':
-                    image.src = 'assets/not-found.png'
-                    break;
-
-                case 'Haze':
-                    image.src = 'assets/not-found.png'
-                    break;
 
                 default:
                     image.src = '';
