@@ -15,7 +15,7 @@ search.addEventListener('click', () =>{
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`).then(Response => Response.json()) .then(json => {
 
         if(json.cod === '404'){
-            container.style.height = '600px';
+            container.style.height = '800px';
             weatherBox.style.display = 'none';
             weatherBoxDetails.style.display = 'none';
             error.style.display = 'block';
@@ -33,6 +33,21 @@ search.addEventListener('click', () =>{
             const humidity = document.querySelector('.weather-details .humidity span');
             const wind = document.querySelector('.weather-details .wind span');
 
+            // Obter a hora atual
+            var currentTime = new Date().getHours();
+
+            // Determinar se é dia ou noite
+            var isNight = (currentTime >= 19 || currentTime < 6); // A noite é das 19h às 6h
+
+            // Mostrar a imagem apropriada com base no período do dia
+            if (isNight) {
+                // É noite, mostra a lua
+                image.src = 'assets/clear-gif.gif';
+            } else {
+                // É dia, mostra o sol
+                image.src = 'assets/clear-gif.gif';
+            }
+
             switch (json.weather[0].main){
 
                 case 'Rain':
@@ -45,11 +60,18 @@ search.addEventListener('click', () =>{
                     image.src = 'assets/thunder.png'
                     break;
                 case 'Clear':
-                    image.src = 'assets/clear.png'
+                                if (isNight) {
+                // É noite, mostra a lua
+                image.src = 'assets/clear-gif.gif';
+                } else {
+                // É dia, mostra o sol
+                image.src = 'assets/clear-gif.gif';
+                }
                     break;
                 case 'Snow':
                     image.src = 'assets/snow.png'
                     break;
+                    
                 default:
                     image.src = '';
 
@@ -64,7 +86,7 @@ search.addEventListener('click', () =>{
             weatherBoxDetails.style.display = '';
             weatherBox.classList.add('fadeIn');
             weatherBoxDetails.classList.add('fadeIn');
-            container.style.height = '590px';
+            container.style.height = '700px';
 
 
 
